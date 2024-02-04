@@ -32,7 +32,8 @@ async function handleSearch(event) {
     const form = event.currentTarget;
     const images = form.elements.images.value;
     
-    gallery.innerHTML = '';
+  gallery.innerHTML = '';
+  page = 1;
 
     if (!images.trim()) {
         iziToast.show({
@@ -69,7 +70,13 @@ async function handleSearch(event) {
         }        
     }       
        catch(error) {
-      console.log(error);
+      console.log(iziToast.show({                   
+                    message: `Ooops! Something went wrong.`,                    
+                    messageColor: 'white',
+                    backgroundColor: '#EF4040',
+                    position: 'topRight',
+                    timeout: 4000,
+                }))
     }
         finally {
         form.reset();
@@ -89,13 +96,15 @@ async function handleSearch(event) {
 
         const cardSize = gallery.getBoundingClientRect();  
         window.scrollBy({ top: cardSize.height * 2, behavior: "smooth", })
-
-        // const card = document.querySelectorAll('.gallery-item');
-        // const cardSize = card.getBoundingClientRect();            
-        // window.scrollBy({ top: cardSize.height * 2, behavior: "smooth", });
         
         }catch(error) {
-      console.log(error);
+      console.log(iziToast.show({                   
+                    message: `Ooops! Something went wrong.`,                    
+                    messageColor: 'white',
+                    backgroundColor: '#EF4040',
+                    position: 'topRight',
+                    timeout: 4000,
+                }));
     }
         finally {
             loadMoreBtn.classList.remove('is-hidden');
